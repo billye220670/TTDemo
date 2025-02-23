@@ -92,6 +92,9 @@ waterfallGrids.forEach(grid => {
     sampleImages.forEach(image => {
         const item = document.createElement('div');
         item.className = 'item';
+        // 添加随机偏移量
+        const randomOffset = Math.floor(Math.random() * 40) - 20;
+        item.style.setProperty('--random-offset', `${randomOffset}px`);
         item.innerHTML = `
             <img src="${image.url}" alt="${image.title}">
             <div style="padding: 12px">

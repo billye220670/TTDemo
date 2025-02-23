@@ -46,22 +46,25 @@ body {
 /* 瀑布流网格样式 */
 .waterfall-grid {
     column-count: 2;
-    column-gap: 16px;
+    column-gap: 24px;
+    padding: 8px;
 }
 
 .waterfall-grid .item {
     break-inside: avoid;
-    margin-bottom: 16px;
-    border-radius: 8px;
+    margin-bottom: 24px;
+    border-radius: 12px;
     overflow: hidden;
     background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(var(--random-offset, 0));
 }
 
 .waterfall-grid .item img {
     width: 100%;
     height: auto;
     display: block;
+    transition: transform 0.3s ease;
 }
 
 /* 热门分类样式 */
