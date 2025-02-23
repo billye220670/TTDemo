@@ -92,16 +92,33 @@ waterfallGrids.forEach(grid => {
     sampleImages.forEach(image => {
         const item = document.createElement('div');
         item.className = 'item';
-        // 添加随机偏移量
-        const randomOffset = Math.floor(Math.random() * 40) - 20;
+        // 添加更大范围的随机偏移量，使错落感更明显
+        const randomOffset = Math.floor(Math.random() * 120) - 60;
         item.style.setProperty('--random-offset', `${randomOffset}px`);
         item.innerHTML = `
             <img src="${image.url}" alt="${image.title}">
-            <div style="padding: 12px">
+            <div style="padding: ${12 + Math.floor(Math.random() * 20)}px">
                 <h3 style="margin-bottom: 8px">${image.title}</h3>
                 <p style="color: #666; font-size: 14px">这是一段关于${image.title}的描述文本。</p>
             </div>
+            <div class="user-info-bar">
+                <div class="user-avatar">
+                    <img src="${image.url}" alt="用户头像">
+                </div>
+                <span class="username">设计师${Math.floor(Math.random() * 1000)}</span>
+                <button class="like-button">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </button>
+            </div>
         `;
+
+        // 添加喜欢按钮点击事件
+        const likeButton = item.querySelector('.like-button');
+        likeButton.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
         grid.appendChild(item);
     });
 });
