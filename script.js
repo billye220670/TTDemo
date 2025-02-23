@@ -2,6 +2,10 @@
 const navItems = document.querySelectorAll('.nav-item');
 const pages = document.querySelectorAll('.page');
 
+// 设置发现页面为默认显示页面
+document.querySelector('#discover').classList.add('active');
+document.querySelector('[data-page="discover"]').classList.add('active');
+
 navItems.forEach(item => {
     item.addEventListener('click', () => {
         if (item.classList.contains('new-button')) {

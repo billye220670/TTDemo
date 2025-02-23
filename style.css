@@ -17,6 +17,7 @@ body {
 }
 
 .content {
+    padding-top: 60px;
     padding-bottom: 60px;
 }
 
@@ -30,18 +31,103 @@ body {
     display: block;
 }
 
-/* 搜索栏样式 */
-.search-bar {
+/* 顶部导航栏样式 */
+.top-nav {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
     margin-bottom: 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    z-index: 1000;
 }
 
-.search-bar input {
-    width: 100%;
-    padding: 12px 16px;
+.menu-button {
+    width: 24px;
+    height: 24px;
     border: none;
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: none;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-button span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.tab-buttons {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.tab-btn {
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    color: #888;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: #ffffff;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 2px;
+    background: linear-gradient(135deg, #00c6ff, #7c4dff);
+    border-radius: 1px;
+}
+
+.search-icon {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: 16px;
+}
+
+.search-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.7);
+    stroke-width: 2;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 2px;
+    background: linear-gradient(135deg, #00c6ff, #7c4dff);
+    border-radius: 1px;
 }
 
 /* 瀑布流网格样式 */
@@ -202,19 +288,34 @@ body {
     left: 0;
     right: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background: #2d2d2d;
-    padding: 8px 0;
-    height: 60px;
+    padding: 12px 24px;
+    height: 72px;
 }
 
 .nav-item {
     text-align: center;
-    padding: 4px 0 8px;
+    padding: 0;
     color: #888;
     transition: all 0.3s ease;
-    flex: 1;
+    flex: 0.6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 48px;
+    margin-top: -37px;
+}
+
+.nav-item:nth-child(1),
+.nav-item:nth-child(2) {
+    margin-left: -26px;
+}
+
+.nav-item:nth-child(4),
+.nav-item:nth-child(5) {
+    margin-right: -26px;
 }
 
 .nav-item.active {
@@ -222,36 +323,37 @@ body {
 }
 
 .nav-item.new-button {
-    width: 56px;
-    height: 56px;
-    flex: 0 0 56px;
-    margin: -20px 8px 0;
+    position: relative;
+    width: 48px;
+    height: 48px;
+    margin-top: -37px;
     background: linear-gradient(135deg, #00c6ff, #7c4dff);
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     box-shadow: 0 4px 12px rgba(0, 198, 255, 0.3);
-    transform: translateY(-8px);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
+    flex: 0.5;
 }
 
 .nav-item.new-button::before {
     content: '';
-    width: 32px;
-    height: 32px;
-    background: url('images/ico_Star.png') no-repeat center center;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: url('images/ico_Star.png') no-repeat center;
     background-size: contain;
 }
 
 .nav-item.new-button:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 6px 16px rgba(0, 198, 255, 0.4);
+    transform: translateY(-4px);
 }
 
 .nav-item span {
-    font-size: 12px;
+    font-size: 14px;
+    display: block;
+    margin-top: 2px;
 }
 
 /* 瀑布流网格样式 */
@@ -385,19 +487,20 @@ body {
     left: 0;
     right: 0;
     display: flex;
-    padding: 16px;
+    padding: 24px;
     background-color: #1a1a1a;
     border-top: 1px solid #2d2d2d;
 }
 
 .chat-input input {
     flex: 1;
-    padding: 8px 12px;
+    padding: 12px 16px;
     border: 1px solid #2d2d2d;
     border-radius: 20px;
-    margin-right: 8px;
+    margin-right: 12px;
     background-color: #2d2d2d;
     color: #ffffff;
+    font-size: 14px;
 }
 
 .chat-input input::placeholder {
@@ -405,13 +508,14 @@ body {
 }
 
 .send-button {
-    padding: 8px 16px;
+    padding: 12px 24px;
     background: linear-gradient(135deg, #00c6ff, #7c4dff);
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 14px;
 }
 
 .send-button:hover {
@@ -427,6 +531,16 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: messagePopup 0.3s ease forwards;
+}
+
+@keyframes messagePopup {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .message-avatar {
